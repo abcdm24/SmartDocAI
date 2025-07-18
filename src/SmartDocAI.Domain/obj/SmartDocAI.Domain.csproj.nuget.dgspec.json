@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\Projects\\SmartDOC\\SmartDocAI\\src\\SmartDocAI.Domain\\SmartDocAI.Domain.csproj": {}
+  },
+  "projects": {
+    "F:\\Projects\\SmartDOC\\SmartDocAI\\src\\SmartDocAI.Domain\\SmartDocAI.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Projects\\SmartDOC\\SmartDocAI\\src\\SmartDocAI.Domain\\SmartDocAI.Domain.csproj",
+        "projectName": "SmartDocAI.Domain",
+        "projectPath": "F:\\Projects\\SmartDOC\\SmartDocAI\\src\\SmartDocAI.Domain\\SmartDocAI.Domain.csproj",
+        "packagesPath": "D:\\.nuget",
+        "outputPath": "F:\\Projects\\SmartDOC\\SmartDocAI\\src\\SmartDocAI.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "D:\\MappedFolder\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Mithun Das\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "D:\\MappedFolder\\dotnet\\library-packs": {},
+          "D:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "D:\\MappedFolder\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
