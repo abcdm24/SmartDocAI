@@ -36,12 +36,21 @@ Upload business documents (PDF, DOCX), extract insights, summarize, and ask ques
 SmartDocAI/
 
 |-- src/
-|-- SmartDocAI.Web/ # ASP.NET Core MVC App
-|-- SmartDocAI.Application/ # Application Layer (UseCases)
-|-- SmartDocAI.Domain/ # Domain Models & Interfaces
-|-- SmartDocAI.Infrastructure/ # External Integrations (OpenAI, DB)
-|-- SmartDocAI.ReactApp/ # Frontend (React + Vite)
-|-- SmartDocAI.Tests/ # Unit and Integration Tests
+
+    |
+    |-- SmartDocAI.Web/ # ASP.NET Core MVC App
+    |
+    |-- SmartDocAI.Application/ # Application Layer (UseCases)
+    |
+    |-- SmartDocAI.Domain/ # Domain Models & Interfaces
+    |
+    |-- SmartDocAI.Infrastructure/ # External Integrations (OpenAI, DB)
+    |
+    |-- SmartDocAI.ReactApp/ # Frontend (React + Vite)
+    |
+    |-- SmartDocAI.Tests/ # Unit and Integration Tests
+
+|
 |-- .github/workflows/ # GitHub Actions CI/CD
 |-- .gitignore
 |-- docker-compose.yml
