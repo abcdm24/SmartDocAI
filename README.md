@@ -19,15 +19,15 @@ Upload business documents (PDF, DOCX), extract insights, summarize, and ask ques
 
 ## 🧱 Tech Stack
 
-| Layer        | Tech                     |
-| ------------ | ------------------------ |
-| Frontend     | React + Vite + Axios     |
-| Backend      | ASP.NET Core MVC         |
-| AI           | OpenAI API or Gemini Pro |
-| Parsing      | PdfSharp, OpenXml SDK    |
-| Architecture | Clean Architecture (C#)  |
-| Container    | Docker + Docker Compose  |
-| CI/CD        | GitHub Actions           |
+| Layer        | Tech                               |
+| ------------ | ---------------------------------- |
+| Frontend     | React + Vite + Axios + Material UI |
+| Backend      | ASP.NET Core MVC                   |
+| AI           | OpenAI API or Gemini Pro           |
+| Parsing      | PdfSharp, OpenXml SDK              |
+| Architecture | Clean Architecture (C#)            |
+| Container    | Docker + Docker Compose            |
+| CI/CD        | GitHub Actions                     |
 
 ---
 
@@ -46,7 +46,7 @@ SmartDocAI/
     |
     |-- SmartDocAI.Infrastructure/ # External Integrations (OpenAI, DB)
     |
-    |-- SmartDocAI.ReactApp/ # Frontend (React + Vite)
+    |-- SmartDocAI.ReactApp/ # Frontend (React + Vite + Axios + Material UI)
     |
     |-- SmartDocAI.Tests/ # Unit and Integration Tests
 
