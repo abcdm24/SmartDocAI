@@ -34,6 +34,7 @@ Upload business documents (PDF, DOCX), extract insights, summarize, and ask ques
 ## ⚙️ Project Structure
 
 SmartDocAI/
+
 |-- src/
 |-- SmartDocAI.Web/ # ASP.NET Core MVC App
 |-- SmartDocAI.Application/ # Application Layer (UseCases)
