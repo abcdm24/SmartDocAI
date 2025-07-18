@@ -50,13 +50,12 @@ SmartDocAI/
     |
     |-- SmartDocAI.Tests/ # Unit and Integration Tests
 
-|
 |-- .github/workflows/ # GitHub Actions CI/CD
-|
+
 |-- .gitignore
-|
+
 |-- docker-compose.yml
-|
+
 |-- README.md
 
 ---
