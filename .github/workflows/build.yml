@@ -1,0 +1,64 @@
+name: SmartDocAI CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    name: 🔧 Build and Test .NET Backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🧰 Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: 🧹 Restore dependencies
+        run: dotnet restore .src/SmartDocAI.Web/SmartDocAI.Web.csproj
+        #run: dotnet restore SmartDocAI.sln
+
+      - name: 🛠️ Build solution
+        run: dotnet build SmartDocAI.sln --configuration Release --no-restore
+
+      - name: ✅ Run tests
+        run: dotnet test SmartDocAI.Tests/SmartDocAI.Tests.csproj --no-build --verbosity normal
+
+  frontend:
+    name: 🌐 Build React Frontend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./src/SmartDocAI.ReactApp
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🧰 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: ✅ Run React Tests
+        run: npm test -- --watchAll=false
+
+      - name: 🛠️ Build React App
+        run: npm run build
+
+      # Optional: Upload build artifacts if you want to deploy
+      - name: 📤 Upload React build
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: src/SmartDocAI.ReactApp/build
