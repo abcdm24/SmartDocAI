@@ -21,8 +21,8 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: 🧹 Restore dependencies
-        run: dotnet restore .src/SmartDocAI.Web/SmartDocAI.Web.csproj
-        #run: dotnet restore SmartDocAI.sln
+        #run: dotnet restore SmartDocAI.Web/SmartDocAI.Web.csproj
+        run: dotnet restore SmartDocAI.sln
 
       - name: 🛠️ Build solution
         run: dotnet build SmartDocAI.sln --configuration Release --no-restore
@@ -48,7 +48,7 @@ jobs:
           node-version: '20'
 
       - name: 📦 Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: ✅ Run React Tests
         run: npm test -- --watchAll=false
