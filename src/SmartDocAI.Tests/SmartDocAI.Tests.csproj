@@ -15,6 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SmartDocAI.Application\SmartDocAI.Application.csproj" />
+    <ProjectReference Include="..\SmartDocAI.Domain\SmartDocAI.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

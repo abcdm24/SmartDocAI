@@ -16,7 +16,8 @@ const Home = () => {
           SmartDoc AI
         </Typography>
         <Typography variant="h6" color="textSecondary" gutterBottom>
-          Upload and analyze business documents with AI-powered insights.
+          {/* Upload and analyze business documents with AI-powered insights. */}
+          Upload and analyze documents with AI-powered insights.
         </Typography>
         <Divider sx={{ my: 3 }} />
         <Typography>

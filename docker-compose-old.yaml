@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  web:
+    build: ./src/SmartDocAI.Web
+    ports:
+      - "5000:80"
+    depends_on:
+      - frontend
+  db:
+      image: postgres:15
+      restart: always
+      environment:
+        POSTGRES_USER: smartdoc
+        POSTGRES_PASSWORD: secret123
+        POSTGRES_DB: smartdocdb
+      volumes:
+        - pgdata:/var/lib/postgresql/data
+      ports:
+        - "5432:5432"
+  frontend:
+    build: ./src/SmartDocAI.ReactApp
+    ports:
+      - "3000:80"
+
+volumes:
+  pgdata:

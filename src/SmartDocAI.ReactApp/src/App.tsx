@@ -1,6 +1,6 @@
 //
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import MainLayout from "./layout/MainLayout";
+//import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 
@@ -12,7 +12,7 @@ function App() {
         <Link to="/upload">Upload Document</Link>
       </nav>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/upload" element={<Upload />} />
       </Routes>
     </Router>
