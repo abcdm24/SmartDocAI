@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-// import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 
 const theme = createTheme({
@@ -23,13 +23,13 @@ createRoot(document.getElementById("root")!).render(
         <App />
       </ThemeProvider>
     </HelmetProvider>
-    {/* <BrowserRouter>
+    {/* <Router>
     <HelmentProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <App />
       </ThemeProvider>
       </HelmentProvider>
-    </BrowserRouter> */}
+    </Router> */}
   </StrictMode>
 );

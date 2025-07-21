@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "AUteSCdbX2s=",
+  "dgSpecHash": "/rFeOf0SPSQ=",
   "success": true,
   "projectFilePath": "F:\\Projects\\SmartDOC\\SmartDocAI\\src\\SmartDocAI.Application\\SmartDocAI.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "D:\\.nuget\\microsoft.aspnetcore.http.abstractions\\2.3.0\\microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
+    "D:\\.nuget\\microsoft.aspnetcore.http.features\\2.3.0\\microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
+    "D:\\.nuget\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "D:\\.nuget\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
