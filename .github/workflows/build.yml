@@ -51,7 +51,8 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: ✅ Run React Tests
-        run: npm test -- --watchAll=false
+        #run: npm test -- --watchAll=false
+        run: npm run test
 
 
       - name: 🛠️ Build React App
