@@ -6,5 +6,6 @@ public class UnitTest1
     public void Test1()
     {
         //Test backend
+        Assert.Equal(4, 2 + 2);
     }
 }
