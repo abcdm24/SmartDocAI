@@ -12,5 +12,6 @@ export default defineConfig({
     host: 'localhost',
     open: true,
     cors: true
-  }
+  },
+  
 })

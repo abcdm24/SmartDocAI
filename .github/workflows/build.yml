@@ -28,7 +28,8 @@ jobs:
         run: dotnet build SmartDocAI.sln --configuration Release --no-restore
 
       - name: ✅ Run tests
-        run: dotnet test src/SmartDocAI.Tests/SmartDocAI.Tests.csproj --no-build --verbosity normal
+        #run: dotnet test src/SmartDocAI.Tests/SmartDocAI.Tests.csproj --no-build --verbosity normal
+        run: dotnet test src/SmartDocAI.Tests/SmartDocAI.Tests.csproj --verbosity diag
 
   frontend:
     name: 🌐 Build React Frontend
