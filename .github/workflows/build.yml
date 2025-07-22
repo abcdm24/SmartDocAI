@@ -53,8 +53,20 @@ jobs:
 
       - name: ✅ Run React Tests
         #run: npm test -- --watchAll=false
-        run: npm run test:run
+        #run: npm run test:run -- --coverage --reporters=default --reporters=html
+        run: npm run test:coverage
 
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
+
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v4
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }} # Add this in GitHub → Settings → Secrets
+      #     files: ./coverage/lcov.info          
 
       - name: 🛠️ Build React App
         run: npm run build
