@@ -53,7 +53,7 @@ jobs:
 
       - name: ✅ Run React Tests
         #run: npm test -- --watchAll=false
-        run: npm run test
+        run: npm run test:run
 
 
       - name: 🛠️ Build React App
