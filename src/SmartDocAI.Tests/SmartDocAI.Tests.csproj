@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0" />
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="moq" Version="4.20.72" />
@@ -21,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SmartDocAI.Application\SmartDocAI.Application.csproj" />
     <ProjectReference Include="..\SmartDocAI.Domain\SmartDocAI.Domain.csproj" />
+    <ProjectReference Include="..\SmartDocAI.Web\SmartDocAI.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

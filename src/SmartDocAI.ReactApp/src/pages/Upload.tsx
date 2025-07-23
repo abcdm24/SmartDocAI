@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -79,6 +79,7 @@ const Upload = () => {
 
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Within handleUpload file selected:", file?.name);
     if (!file) {
       setSnackbar({
         open: true,
@@ -117,6 +118,14 @@ const Upload = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("Doc id state updated:", docId);
+  }, [docId]);
+
+  useEffect(() => {
+    console.log("File state updated:", file?.name);
+  }, [file]);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0];
@@ -132,6 +141,8 @@ const Upload = () => {
     if (!docId) return;
     setLoading(true);
     try {
+      console.log("handleSuumarize function called with ");
+
       const res = await api.get(`/${docId}/Summarize`);
       setSummary(res.data.summary);
       setSnackbar({
@@ -149,6 +160,10 @@ const Upload = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    console.log("Summary state updated:", summary);
+  }, [summary]);
 
   const handleAskAI = async () => {
     if (!docId || !userPrompt.trim()) return;
@@ -273,7 +288,7 @@ const Upload = () => {
           {/* Upload Form */}
           {/* <form onSubmit={handleUploadAndExtract}> */}
           <ErrorBoundary>
-            <form onSubmit={handleUpload}>
+            <form onSubmit={handleUpload} data-testid="upload-form">
               <Stack spacing={2}>
                 <InputLabel htmlFor="docFile">Select a file</InputLabel>
                 <Input
@@ -300,7 +315,11 @@ const Upload = () => {
             {extractedText && (
               <Stack spacing={3} mt={5}>
                 <Box>
-                  <Typography variant="h6" gutterBottom>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    data-testid="extracted-text-title"
+                  >
                     Extracted Text
                   </Typography>
                   <TextField
@@ -355,6 +374,7 @@ const Upload = () => {
           <ErrorBoundary>
             <Stack spacing={3} mt={5}>
               <TextField
+                title="ask-ai-textfield"
                 label="Ask something about the document"
                 fullWidth
                 multiline
