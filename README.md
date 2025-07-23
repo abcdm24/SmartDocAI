@@ -92,3 +92,7 @@ Add translation API (multilingual support)
 Deploy preview version via Azure or Render
 
 MIT © 2025 SmartDoc AI
+
+<!-- # SmartDoc AI
+
+![Coverage](https://codecov.io/gh/mithundas/SmartDocAI/branch/main/graph/badge.svg) -->
