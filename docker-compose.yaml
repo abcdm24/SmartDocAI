@@ -2,23 +2,54 @@ version: "3.9"
 services:
   backend:
     build:
-      context: ./src/SmartDocAI.Web
-      dockerfile: Dockerfile
+      context: . # ./src/SmartDocAI.Web
+      dockerfile: ./src/SmartDocAI.Web/Dockerfile
     ports:
       - "5000:80"
     depends_on:
-      - postgres
-  frontend:
-    build:
-      context: ./src/SmartDocAI.ReactApp
-      dockerfile: Dockerfile
-    ports:
-      - "3000:80"
-  postgres:
-    image: postgres:15
+      db:
+        condition: service_healthy
     environment:
-      POSTGRES_USER: smartdoc
-      POSTGRES_PASSWORD: smartdoc123
-      POSTGRES_DB: smartdocdb
+      - connectionStrings__DefaultConnection=Server=db;Database=SmartDocAI;User Id=sa;Password=password2#
+      - DisableHttps=true
+    networks:
+      - smartdocnet
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "password2#"
+      ACCEPT_EULA: "Y"
     ports:
-      - "5432:5432"
+      - "1433:1433"
+    volumes:
+      - sqlvolume:/ver/opt/mssql
+    networks:
+      - smartdocnet
+    healthcheck:
+      test: [ "CMD-SHELL", "sqlcmd -S localhost -U sa -P password2# -Q 'SELECT 1'" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  # frontend:
+  #   build:
+  #     context: . # ./src/SmartDocAI.ReactApp
+  #     dockerfile: ./src/SmartDocAI.ReactApp/Dockerfile
+  #   ports:
+  #     - "3000:80"
+  #   networks:
+  #     - smartdocnet
+  # postgres:
+  #   image: postgres:15
+  #   environment:
+  #     POSTGRES_USER: smartdoc
+  #     POSTGRES_PASSWORD: smartdoc123
+  #     POSTGRES_DB: smartdocdb
+  #   ports:
+  #     - "5432:5432"
+volumes:
+  sqlvolume:
+    # driver-opts:
+    # device: "F:/DockerVolume/sqlvolume"
+
+networks:
+  smartdocnet:
