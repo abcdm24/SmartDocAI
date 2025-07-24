@@ -47,9 +47,16 @@ if (app.Environment.IsDevelopment())
     //    c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
     //});
     app.UseSwaggerUI();
+    //app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
+var disableHttps = builder.Configuration.GetValue<bool>("DisableHttps");
+
+if (!disableHttps)
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseAuthorization();
 app.MapControllers();
 
