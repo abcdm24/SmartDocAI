@@ -34,3 +34,4 @@ Dockerfile
 # OS Files
 .DS_Store
 Thumbs.db
+/src/SmartDocAI.Mobile-created-with-blank-template-not-running-emulator/node_modules-deleted

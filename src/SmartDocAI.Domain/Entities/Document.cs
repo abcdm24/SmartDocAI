@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartDocAI.Domain.Entities
 {
-    public class Document : IDocument
+    public class Document //: IDocument
     {
         public Guid Id { get; set; }
         public string FileName { get; set; } = string.Empty;

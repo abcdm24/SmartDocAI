@@ -39,7 +39,7 @@ namespace SmartDocAI.Infrastructure.Services
             //    FileType = Enum.TryParse(dto.Type, out Domain.Enums.DocumentType docType) ? docType : Domain.Enums.DocumentType.Unknown
             //};
             _logger.LogInformation("Add document started: {FileName}", document.FileName);
-            await _documentRepository.AddAsync(document);
+            await _documentRepository.AddAsync((Document)document);
             return document;
         }
 
@@ -92,7 +92,7 @@ namespace SmartDocAI.Infrastructure.Services
             };
             _logger.LogInformation($"Add document started for file: {doc.FileName}");
             await _documentRepository.AddAsync(doc);
-            return doc;
+            return new DocumentDto(doc);
         }
 
         public async Task<DocumentDto?> GetDocumentByIdAsync(Guid id)
@@ -119,7 +119,7 @@ namespace SmartDocAI.Infrastructure.Services
             //    FileType = Enum.TryParse(dto.Type, out Domain.Enums.DocumentType type) ? type : Domain.Enums.DocumentType.Unknown
             //};
 
-            await _documentRepository.AddAsync(document);
+            await _documentRepository.AddAsync((Document)document);
             return document.Id;
         }
 
@@ -144,10 +144,10 @@ namespace SmartDocAI.Infrastructure.Services
             return true;
         }
 
-        public static DocumentDto MapToDto(IDocument doc) => new DocumentDto
+        public static DocumentDto MapToDto(Document doc) => new DocumentDto
         {
             Id = doc.Id,
-            Name = doc.FileName,
+            FileName = doc.FileName,
             //Content = doc.Content,
             //Type = doc.FileType.ToString()
             UploadedAt = doc.UploadedAt
