@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SmartDocAI.Domain.Entities;
 using SmartDocAI.Domain;
 using SmartDocAI.Domain.Interfaces;
-
+using Document = SmartDocAI.Domain.Entities.Document;
 namespace SmartDocAI.Application.Interfaces
 {
     /// <summary>
@@ -15,10 +15,10 @@ namespace SmartDocAI.Application.Interfaces
     /// </summary>
     public interface IDocumentRepository
     {
-        Task<IDocument?> GetByIdAsync(Guid id);
-        Task<IEnumerable<IDocument>> GetAllAsync();
-        Task AddAsync(IDocument document);
-        Task UpdateAsync(IDocument document);
+        Task<Document?> GetByIdAsync(Guid id);
+        Task<IEnumerable<Document>> GetAllAsync();
+        Task AddAsync(Document document);
+        Task UpdateAsync(Document document);
         Task<bool> DeleteAsync(Guid id);
     }
 }
