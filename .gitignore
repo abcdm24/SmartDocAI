@@ -38,3 +38,4 @@ Thumbs.db
 /src/SmartDocAI.Mobile-created-with-blank-template-not-running-emulator/node_modules-deleted
 src/SmartDocAI.Web/Properties/PublishProfiles/
 src/SmartDocAI.Web/Properties/launchSettings.json
+src/SmartDocAI.Web/appsettings.json
