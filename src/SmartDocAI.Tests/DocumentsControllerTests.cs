@@ -31,17 +31,18 @@ namespace SmartDocAI.Tests
         [Fact]
         public async Task Get_ReturnsDocument_WhenFound() { 
             var docId = Guid.NewGuid();
-            var document = new DocumentDto { Id= docId, Name="samplepdf" };
+            var document = new DocumentDto { Id= docId, 
+                FileName ="samplepdf" };
             _docServiceMock
                 .Setup(s => s.GetDocumentByIdAsync(docId))
-                .ReturnsAsync(new DocumentDto { Id = docId, Name="samplepdf"});
+                .ReturnsAsync(new DocumentDto { Id = docId, FileName ="samplepdf"});
 
             var controller = CreateController();
             var result = await controller.Get(docId);
 
             var okResult = Assert.IsType<OkObjectResult>(result);
             Assert.Equal(document.Id, (okResult.Value as DocumentDto)!.Id);
-            Assert.Equal(document.Name, (okResult.Value as DocumentDto)!.Name);
+            Assert.Equal(document.FileName, (okResult.Value as DocumentDto)!.FileName);
            // Assert.True((document.UploadedAt - (okResult.Value as DocumentDto)!.UploadedAt).Duration() < 
            //     TimeSpan.FromMicroseconds(1000));
         }

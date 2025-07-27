@@ -74,7 +74,7 @@ namespace SmartDocAI.Web.Controllers
             _logger.LogInformation($"Uploading document {file.FileName}");
             var document = await _documentService.UploadDocumentAsync(file, userName);
             _logger.LogInformation($"Uploaded document: {document.FileName} in folder: {document.StoragePath}");
-            return Ok(new DocumentDto { Id = document.Id, Name = document.FileName, UploadedAt = document.UploadedAt });
+            return Ok(new { Id = document.Id, Name = document.FileName, UploadedAt = document.UploadedAt });
         }
 
 

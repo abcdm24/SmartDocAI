@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Document = SmartDocAI.Domain.Entities.Document;
 
 namespace SmartDocAI.Infrastructure.Persistence
 {
@@ -21,6 +22,6 @@ namespace SmartDocAI.Infrastructure.Persistence
             // Add any additional model configurations here
         }
 
-        public DbSet<IDocument> Documents  => Set<IDocument>();
+        public DbSet<Document> Documents  => Set<Document>();
     }
 }

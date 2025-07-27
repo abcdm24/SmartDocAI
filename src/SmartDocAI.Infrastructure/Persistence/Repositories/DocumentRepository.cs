@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using Document = SmartDocAI.Domain.Entities.Document;
 
 namespace SmartDocAI.Infrastructure.Persistence.Repositories
 {
@@ -23,23 +24,23 @@ namespace SmartDocAI.Infrastructure.Persistence.Repositories
             _logger = logger;
         }
 
-        public async Task AddAsync(IDocument document)
+        public async Task AddAsync(Document document)
         {
             await _context.Documents.AddAsync(document);
             await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<IDocument>> GetAllAsync()
+        public Task<IEnumerable<Document>> GetAllAsync()
         {
-            return _context.Documents.ToListAsync<IDocument>().ContinueWith(task => task.Result.AsEnumerable());
+            return _context.Documents.ToListAsync<Document>().ContinueWith(task => task.Result.AsEnumerable());
         }
 
-        public async Task<IDocument?> GetByIdAsync(Guid id)
+        public async Task<Document?> GetByIdAsync(Guid id)
         {
             return await _context.Documents.FindAsync(id);
         }
 
-        public async Task UpdateAsync(IDocument document)
+        public async Task UpdateAsync(Document document)
         {
             _context.Documents.Update(document);
             await _context.SaveChangesAsync();
