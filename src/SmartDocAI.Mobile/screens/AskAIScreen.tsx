@@ -14,6 +14,11 @@ import api from "../api/axios";
 
 type Props = NativeStackScreenProps<RootStackParamList, "AskAI">;
 
+type QAItem = {
+  question: string;
+  answer: string;
+};
+
 const AskAIScreen: React.FC<Props> = () => {
   const { docId, setDocId } = useDocument();
   const { fileName, setFileName } = useDocument();
@@ -21,6 +26,7 @@ const AskAIScreen: React.FC<Props> = () => {
   const [answer, setAnswer] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const [qaHistory, setQaHistory] = useState<QAItem[]>([]);
 
   const handleAsk = async () => {
     if (!question.trim()) {
@@ -38,6 +44,11 @@ const AskAIScreen: React.FC<Props> = () => {
       }
       console.log("AI Response:", response.data.response);
       setAnswer(response.data.response);
+      setQaHistory((prev) => [
+        { question, answer: response.data.response },
+        ...prev,
+      ]);
+      setQuestion(""); // Clear question input after asking
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setLoading(false);
@@ -80,6 +91,25 @@ const AskAIScreen: React.FC<Props> = () => {
       {error ? (
         <Text style={{ color: "red", marginTop: 16 }}>{error}</Text>
       ) : null}
+
+      {qaHistory.length > 0 && (
+        <>
+          <Text variant="titleMedium" style={{ marginTop: 24 }}>
+            Previous Questions
+          </Text>
+          {qaHistory.map((item, index) => (
+            <Card key={index} style={{ marginTop: 12 }}>
+              <Card.Title title={`Q${qaHistory.length - index}`} />
+              <Card.Content>
+                <Text
+                  style={{ fontWeight: "bold" }}
+                >{`Q: ${item.question}`}</Text>
+                <Text>{`A: ${item.answer}`}</Text>
+              </Card.Content>
+            </Card>
+          ))}
+        </>
+      )}
     </ScrollView>
   );
 };
