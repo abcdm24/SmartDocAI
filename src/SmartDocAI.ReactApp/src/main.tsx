@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 // import { BrowserRouter as Router } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
+//import { HelmetProvider } from "react-helmet-async";
 
 const theme = createTheme({
   palette: {
@@ -17,19 +17,19 @@ const theme = createTheme({
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    {/* <HelmetProvider> */}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+    {/* </HelmetProvider> */}
+    {/* <Router>
     <HelmetProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <App />
       </ThemeProvider>
-    </HelmetProvider>
-    {/* <Router>
-    <HelmentProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-      </HelmentProvider>
+      </HelmetProvider>
     </Router> */}
   </StrictMode>
 );

@@ -1,13 +1,13 @@
 import { Container, Typography, Divider } from "@mui/material";
 import PsychologyIcon from "@mui/icons-material/Psychology";
-import { Helmet } from "react-helmet-async";
+//import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>SmartDoc AI - Home</title>
-      </Helmet>
+      </Helmet> */}
       <Container maxWidth="md" sx={{ mt: 8 }}>
         <Typography variant="h3" gutterBottom>
           <PsychologyIcon
@@ -19,7 +19,7 @@ const Home = () => {
           {/* Upload and analyze business documents with AI-powered insights. */}
           Upload and analyze documents with AI-powered insights.
         </Typography>
-        <Divider sx={{ my: 3 }} />
+        <Divider sx={{ my: 1 }} />
         <Typography>
           start by navigating to the <strong>Upload</strong> page.
         </Typography>
