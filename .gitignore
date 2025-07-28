@@ -39,3 +39,4 @@ Thumbs.db
 src/SmartDocAI.Web/Properties/PublishProfiles/
 src/SmartDocAI.Web/Properties/launchSettings.json
 src/SmartDocAI.Web/appsettings.json
+src/SmartDocAI.ReactApp/coverage
