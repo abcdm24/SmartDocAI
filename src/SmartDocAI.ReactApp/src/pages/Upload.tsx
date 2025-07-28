@@ -15,7 +15,7 @@ import {
   Alert,
 } from "@mui/material";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import { Helmet } from "react-helmet-async";
+//import { Helmet } from "react-helmet-async";
 import api from "../api/axios.ts";
 import ErrorBoundary from "../components/ErrorBoundary.tsx";
 
@@ -259,9 +259,9 @@ const Upload = () => {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>SmartDoc AI - Upload</title>
-      </Helmet>
+      </Helmet> */}
       <Container maxWidth="md" sx={{ mt: 6 }}>
         <Stack spacing={4}>
           <Typography variant="h4" gutterBottom>
