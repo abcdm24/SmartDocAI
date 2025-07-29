@@ -1,7 +1,7 @@
 import { describe, it, vi, beforeEach, expect } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import Upload from "../pages/Upload";
-import { HelmetProvider } from "react-helmet-async";
+//import { HelmetProvider } from "react-helmet-async";
 import api from "../api/axios";
 import userEvent from "@testing-library/user-event";
 //import axios from "axios";
@@ -106,9 +106,9 @@ describe("Upload Component", () => {
     // });
 
     render(
-      <HelmetProvider>
-        <Upload />
-      </HelmetProvider>
+      // <HelmetProvider>
+      <Upload />
+      // </HelmetProvider>
     );
     await simulateFileUpload();
     // // // const fileInput = screen.getByLabelText(/Select a file/i);
@@ -175,9 +175,9 @@ describe("Upload Component", () => {
 
   it("generated summary when summarize button is clicked", async () => {
     render(
-      <HelmetProvider>
-        <Upload />
-      </HelmetProvider>
+      // <HelmetProvider>
+      <Upload />
+      // </HelmetProvider>
     );
 
     //Upload data
@@ -208,9 +208,9 @@ describe("Upload Component", () => {
 
   it("sends user prompt and displays AI response", async () => {
     render(
-      <HelmetProvider>
-        <Upload />
-      </HelmetProvider>
+      // <HelmetProvider>
+      <Upload />
+      // </HelmetProvider>
     );
 
     await simulateFileUpload();
