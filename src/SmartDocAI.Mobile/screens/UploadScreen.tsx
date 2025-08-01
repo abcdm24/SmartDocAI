@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Text, Card, ActivityIndicator } from "react-native-paper";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -34,7 +34,7 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
       const file = result.assets[0];
       setFileName(file.name);
       setExtractedText(null);
-      handleUploadDocument(file);
+      await handleUploadDocument(file);
     }
   };
 
@@ -44,6 +44,7 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
     mimeType?: string;
   }) => {
     try {
+      console.log("Uploading document:", doc.name);
       setUploading(true);
       setUploadSuccess(false);
       const formData = new FormData();
@@ -85,26 +86,62 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
     }
   };
 
+  useEffect(() => {
+    console.log("Doc id state updated:", docId);
+  }, [docId]);
+
+  useEffect(() => {
+    console.log("File state updated:", fileName);
+  }, [fileName]);
+
+  useEffect(() => {
+    console.log("Uploading updated:", uploading);
+  }, [uploading]);
+
+  useEffect(() => {
+    console.log("Upload Success updated:", uploadSuccess);
+  }, [uploadSuccess]);
+
+  useEffect(() => {
+    console.log("Extracting updated:", extracting);
+  }, [extracting]);
+
+  useEffect(() => {
+    console.log("Extracted Text:", extractedText);
+  }, [extractedText]);
+
   return (
     <ScrollView
       style={{ flex: 1 }}
       contentContainerStyle={{ alignItems: "center", justifyContent: "center" }}
     >
       <Card>
-        <Card.Title title="Upload a document" />
+        {/* <Card.Title title="Upload a document" testID="upload-title" /> */}
+        <Card.Title
+          title={<Text testID="upload-title">Upload a document</Text>}
+        />
         <Card.Content>
-          <Button mode="contained" onPress={handlePickDocument}>
+          <Button
+            mode="contained"
+            onPress={handlePickDocument}
+            testID="upload-button"
+          >
             {uploading ? "Uploading..." : "Select Document"}
           </Button>
           {fileName && (
-            <Text style={{ marginTop: 10 }}>Selected: {fileName}</Text>
+            <Text style={{ marginTop: 10 }} testID="selected-file-name">
+              Selected: {fileName}
+            </Text>
           )}
           {uploading && (
             <ActivityIndicator animating={true} style={{ marginTop: 10 }} />
           )}
           {uploadSuccess && docId && (
-            <Text style={{ marginTop: 10, color: "green" }}>
-              Uploaded Sucessfully.
+            <Text
+              style={{ marginTop: 10, color: "green" }}
+              testID="success-msg"
+            >
+              Uploaded Successfully.
             </Text>
           )}
         </Card.Content>
