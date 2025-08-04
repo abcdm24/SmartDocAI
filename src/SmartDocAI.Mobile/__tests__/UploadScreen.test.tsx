@@ -11,7 +11,7 @@ import {
 } from "../__mocks__/MockNavigation";
 import api from "../api/axios";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
-import { performDocumentUploadAndExtract } from "./testUtils/documentTestHelpers";
+import { performDocumentUploadAndExtract } from "../testUtils/documentTestHelpers";
 
 jest.mock("expo", () => ({}));
 jest.mock("expo-document-picker");

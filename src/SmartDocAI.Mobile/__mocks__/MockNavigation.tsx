@@ -20,3 +20,15 @@ export const mockRouteUpload = () => ({
   name: "upload",
   params: {},
 });
+
+export const mockRouteSummarize = () => ({
+  key: "Summarize",
+  name: "Summarize",
+  params: {},
+});
+
+export const mockRouteAskAI = () => ({
+  key: "AskAI",
+  name: "AskAI",
+  params: {},
+});
