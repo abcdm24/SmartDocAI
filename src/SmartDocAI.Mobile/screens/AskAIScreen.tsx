@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import {
   Text,
@@ -6,6 +6,7 @@ import {
   Button,
   Card,
   ActivityIndicator,
+  PaperProvider,
 } from "react-native-paper";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
@@ -29,13 +30,17 @@ const AskAIScreen: React.FC<Props> = () => {
   const [qaHistory, setQaHistory] = useState<QAItem[]>([]);
 
   const handleAsk = async () => {
+    if (!docId) {
+      setError("No document selected");
+      return;
+    }
     if (!question.trim()) {
       setError("Please enter a question.");
       return;
     }
     try {
       setLoading(true);
-      console.log;
+      console.log(`ASK AI called with ${docId} for query ${question}`);
       const response = await api.post(`/${docId}/ask`, question, {
         headers: { "Content-Type": "application/json" },
       });
@@ -63,6 +68,26 @@ const AskAIScreen: React.FC<Props> = () => {
     setAnswer(""); // Clear previous answer
   };
 
+  useEffect(() => {
+    //console.log("question set:", question);
+  }, [question]);
+
+  useEffect(() => {
+    //console.log("Loading updated", loading);
+  }, [loading]);
+
+  useEffect(() => {
+    //console.log("answer set", answer);
+  }, [answer]);
+
+  useEffect(() => {
+    //console.log("docId updated:", docId);
+  });
+
+  useEffect(() => {
+    //console.log("fileName set", fileName);
+  }, [fileName]);
+
   return (
     <ScrollView contentContainerStyle={{ padding: 16 }}>
       <Text variant="titleLarge">Ask AI About "{fileName}"</Text>
@@ -73,12 +98,22 @@ const AskAIScreen: React.FC<Props> = () => {
         mode="outlined"
         multiline
         style={{ marginVertical: 16 }}
+        testID="question-input"
       />
-      <Button mode="contained" onPress={handleAsk} disabled={loading}>
+      <Button
+        mode="contained"
+        onPress={handleAsk}
+        disabled={loading}
+        testID="askai-button"
+      >
         Ask AI
       </Button>
       {loading && (
-        <ActivityIndicator animating={true} style={{ marginTop: 16 }} />
+        <ActivityIndicator
+          animating={true}
+          style={{ marginTop: 16 }}
+          testID="loading-indicator"
+        />
       )}
       {answer ? (
         <Card style={{ marginTop: 16 }}>
@@ -89,7 +124,9 @@ const AskAIScreen: React.FC<Props> = () => {
         </Card>
       ) : null}
       {error ? (
-        <Text style={{ color: "red", marginTop: 16 }}>{error}</Text>
+        <Text style={{ color: "red", marginTop: 16 }} testID="error-text">
+          {error}
+        </Text>
       ) : null}
 
       {qaHistory.length > 0 && (

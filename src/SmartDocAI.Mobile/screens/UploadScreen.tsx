@@ -44,7 +44,7 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
     mimeType?: string;
   }) => {
     try {
-      console.log("Uploading document:", doc.name);
+      //console.log("Uploading document:", doc.name);
       setUploading(true);
       setUploadSuccess(false);
       const formData = new FormData();
@@ -77,7 +77,7 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
       setExtracting(true);
       const response = await api.get(`/${docId}/extract-text`);
       setExtractedText(response.data.text);
-      console.log("Extracted Text:", response.data.text);
+      //console.log("Extracted Text:", response.data.text);
     } catch (err) {
       console.error("Text extraction failed:", err);
       setExtractedText("Failed to extract text.");
@@ -87,27 +87,27 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log("Doc id state updated:", docId);
+    //console.log("Doc id state updated:", docId);
   }, [docId]);
 
   useEffect(() => {
-    console.log("File state updated:", fileName);
+    //console.log("File state updated:", fileName);
   }, [fileName]);
 
   useEffect(() => {
-    console.log("Uploading updated:", uploading);
+    //console.log("Uploading updated:", uploading);
   }, [uploading]);
 
   useEffect(() => {
-    console.log("Upload Success updated:", uploadSuccess);
+    //console.log("Upload Success updated:", uploadSuccess);
   }, [uploadSuccess]);
 
   useEffect(() => {
-    console.log("Extracting updated:", extracting);
+    //console.log("Extracting updated:", extracting);
   }, [extracting]);
 
   useEffect(() => {
-    console.log("Extracted Text:", extractedText);
+    //console.log("Extracted Text:", extractedText);
   }, [extractedText]);
 
   return (

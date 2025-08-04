@@ -36,5 +36,5 @@ const useDocument = () => {
   return context;
 };
 
-export { DocumentProvider, useDocument };
+export { DocumentProvider, useDocument, DocumentContext };
 //export type { DocumentContextType };

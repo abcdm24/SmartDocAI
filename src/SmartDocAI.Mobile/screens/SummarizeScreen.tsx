@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { Text, Button, ActivityIndicator, Card } from "react-native-paper";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -20,13 +20,16 @@ const SummarizeScreen: React.FC<Props> = ({ navigation }) => {
         setError("No document uploaded yet.");
         return;
       }
+      //console.log(`DocId to summarize: ${docId}`);
       setLoading(true);
       setError("");
       const response = await api.get(`${docId}/summarize`);
+      //console.log(`Response received: ${response.data.summary}`);
       if (!response.status || response.status !== 200) {
         throw new Error("Failed to summarize document.");
       }
       const text = await response.data.summary;
+      //console.log(`Response received: ${response}`);
       setSummary(text);
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
@@ -42,6 +45,14 @@ const SummarizeScreen: React.FC<Props> = ({ navigation }) => {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    //console.log("Summary state updated:", summary);
+  }, [summary]);
+
+  useEffect(() => {
+    //console.log("Loading state updated:", loading);
+  }, [loading]);
+
   return (
     <ScrollView
       style={{ flex: 1, backgroundColor: "#fff" }}
@@ -49,7 +60,12 @@ const SummarizeScreen: React.FC<Props> = ({ navigation }) => {
     >
       <Card>
         <Card.Title title="Document Summary" />
-        <Button mode="contained" onPress={handleSummarize} disabled={loading}>
+        <Button
+          mode="contained"
+          onPress={handleSummarize}
+          disabled={loading}
+          testID="summarize-button"
+        >
           Summarize
         </Button>
         {loading && (
