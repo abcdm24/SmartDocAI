@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmartDocAI.Application.DTOs;
 using SmartDocAI.Application.Interfaces;
 using SmartDocAI.Domain.Entities;
@@ -45,6 +46,7 @@ namespace SmartDocAI.Web.Controllers
         /// <param name="id">The unique identifier of the document.</param>
         /// <returns>The document details.</returns>
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> Get(Guid id)
         {
             var doc = await _documentService.GetDocumentByIdAsync(id);
@@ -58,6 +60,7 @@ namespace SmartDocAI.Web.Controllers
         /// <returns>The unique identifier of the uploaded document.</returns>
         [HttpPost("upload")]
         [Consumes("multipart/form-data")]
+        [Authorize]
         public async Task<IActionResult> Upload(IFormFile file) //[FromForm] giving error in swagger
         {
             if (file == null || file.Length == 0)
@@ -84,6 +87,7 @@ namespace SmartDocAI.Web.Controllers
         /// <param name="id"></param>
         /// <returns>document content</returns>
         [HttpGet("{id}/extract-text")]
+        [Authorize]
         public async Task<IActionResult> ExtractText(Guid id)
         {
             var text = await _documentProcessingService.ExtractTextAsync(id);
@@ -102,6 +106,7 @@ namespace SmartDocAI.Web.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}/summarize")]
+        [Authorize]
         public async Task<IActionResult> Summarize(Guid id)
         {
             var extractedText = await _documentProcessingService.ExtractTextAsync(id);
@@ -123,6 +128,7 @@ namespace SmartDocAI.Web.Controllers
         /// <param name="userPrompt"></param>
         /// <returns></returns>
         [HttpPost("{id}/ask")]
+        [Authorize]
         public async Task<IActionResult> Ask(Guid id, [FromBody]string userPrompt)
         {
             if (string.IsNullOrEmpty(userPrompt))
