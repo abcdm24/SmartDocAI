@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartDocAI.Domain.Entities;
 using SmartDocAI.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,5 +24,6 @@ namespace SmartDocAI.Infrastructure.Persistence
         }
 
         public DbSet<Document> Documents  => Set<Document>();
+        public DbSet<User> Users => Set<User>();
     }
 }
