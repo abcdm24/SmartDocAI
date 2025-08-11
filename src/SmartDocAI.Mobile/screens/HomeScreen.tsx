@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useLayoutEffect } from "react";
 import { View, StyleSheet, LayoutChangeEvent } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { Surface, Text, Button } from "react-native-paper";
+import { Surface, Text, Button, Menu, IconButton } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import { useDocument } from "../context/DocumentContext";
+import { AuthContext } from "../context/AuthContext";
 
+//type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
   //const navigation = useNavigation();
+  const { user, logout } = useContext(AuthContext);
   const { docId } = useDocument();
   const [contentWidth, setContentWidth] = useState<number | null>(null);
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const openMenu = () => setMenuVisible(true);
+  const closeMenu = () => setMenuVisible(false);
 
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout;

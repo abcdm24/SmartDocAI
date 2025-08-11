@@ -16,6 +16,10 @@ import { performDocumentUploadAndExtract } from "../testUtils/documentTestHelper
 jest.mock("expo", () => ({}));
 jest.mock("expo-document-picker");
 jest.mock("../api/axios");
+jest.mock("expo-secure-store", () => ({
+  setItemAsync: jest.fn(),
+  getItemAsync: jest.fn(),
+}));
 
 describe("UploadScreen", () => {
   it("should render correctly", () => {

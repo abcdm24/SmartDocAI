@@ -12,6 +12,10 @@ import {
 import { isAxiosError } from "axios";
 
 jest.mock("../api/axios");
+jest.mock("expo-secure-store", () => ({
+  setItemAsync: jest.fn(),
+  getItemAsync: jest.fn(),
+}));
 
 const mockNavigation = createMockNavigation();
 
@@ -66,7 +70,7 @@ describe("AskAIScreen", () => {
 
     await waitFor(() => {
       expect(api.post).toHaveBeenCalledWith(
-        "/mock-doc-id/ask",
+        "documents/mock-doc-id/ask",
         expect.any(String),
         {
           headers: { "Content-Type": "application/json" },

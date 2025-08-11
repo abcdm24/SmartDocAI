@@ -11,6 +11,10 @@ import {
 } from "../__mocks__/MockNavigation";
 import { isAxiosError } from "axios";
 jest.mock("../api/axios");
+jest.mock("expo-secure-store", () => ({
+  setItemAsync: jest.fn(),
+  getItemAsync: jest.fn(),
+}));
 
 const mockNavigation = createMockNavigation();
 
@@ -56,7 +60,7 @@ describe("SummarizeScreen", () => {
     });
 
     await waitFor(() => {
-      expect(api.get).toHaveBeenCalledWith("mock-doc-id/summarize");
+      expect(api.get).toHaveBeenCalledWith("documents/mock-doc-id/summarize");
       expect(getByText("This is a summary")).toBeTruthy();
       //expect(queryByText(/Error/i)).toBeNull();
       console.log("Called summarize API and display summary");
@@ -76,7 +80,7 @@ describe("SummarizeScreen", () => {
     });
 
     await waitFor(() => {
-      expect(api.get).toHaveBeenCalledWith("mock-doc-id/summarize");
+      expect(api.get).toHaveBeenCalledWith("documents/mock-doc-id/summarize");
       expect(getByText("Failed to summarize document.")).toBeTruthy();
       console.log("Shows error if summarize API fails with response");
     });
@@ -103,7 +107,7 @@ describe("SummarizeScreen", () => {
       fireEvent.press(getByText("Summarize"));
     });
     await waitFor(() => {
-      expect(api.get).toHaveBeenCalledWith("mock-doc-id/summarize");
+      expect(api.get).toHaveBeenCalledWith("documents/mock-doc-id/summarize");
       expect(
         getByText("Something went wrong while summarizing the document.")
       ).toBeTruthy();

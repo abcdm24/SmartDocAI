@@ -41,7 +41,7 @@ const AskAIScreen: React.FC<Props> = () => {
     try {
       setLoading(true);
       console.log(`ASK AI called with ${docId} for query ${question}`);
-      const response = await api.post(`/${docId}/ask`, question, {
+      const response = await api.post(`documents/${docId}/ask`, question, {
         headers: { "Content-Type": "application/json" },
       });
       if (response.status !== 200) {
