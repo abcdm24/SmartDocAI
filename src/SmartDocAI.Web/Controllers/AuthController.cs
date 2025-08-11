@@ -5,7 +5,6 @@ using SmartDocAI.Application.DTOs;
 using SmartDocAI.Application.Interfaces;
 using SmartDocAI.Domain.Entities;
 using SmartDocAI.Infrastructure.Services;
-using SmartDocAI.Web.Settings;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
