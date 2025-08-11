@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartDocAI.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using SmartDocAI.Infrastructure.Persistence;
 namespace SmartDocAI.Infrastructure.Migrations
 {
     [DbContext(typeof(SmartDocAIDbContext))]
-    partial class SmartDocAIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250809131118_AddUserTable")]
+    partial class AddUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
