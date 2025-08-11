@@ -54,7 +54,7 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
         type: doc.mimeType || "application/octet-stream",
       } as any);
 
-      const response = await api.post("/upload", formData, {
+      const response = await api.post("documents/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -75,7 +75,7 @@ const UploadScreen: React.FC<Props> = ({ navigation }) => {
   const handleExtractText = async (docId: string) => {
     try {
       setExtracting(true);
-      const response = await api.get(`/${docId}/extract-text`);
+      const response = await api.get(`documents/${docId}/extract-text`);
       setExtractedText(response.data.text);
       //console.log("Extracted Text:", response.data.text);
     } catch (err) {

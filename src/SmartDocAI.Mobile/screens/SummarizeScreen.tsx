@@ -23,7 +23,7 @@ const SummarizeScreen: React.FC<Props> = ({ navigation }) => {
       //console.log(`DocId to summarize: ${docId}`);
       setLoading(true);
       setError("");
-      const response = await api.get(`${docId}/summarize`);
+      const response = await api.get(`documents/${docId}/summarize`);
       //console.log(`Response received: ${response.data.summary}`);
       if (!response.status || response.status !== 200) {
         throw new Error("Failed to summarize document.");
@@ -77,6 +77,24 @@ const SummarizeScreen: React.FC<Props> = ({ navigation }) => {
           <Text style={{ marginTop: 20 }}>{summary}</Text>
         ) : null}
       </Card>
+      {summary && (
+        <View style={{ marginTop: 20 }}>
+          <Button
+            mode="outlined"
+            style={{ marginTop: 12 }}
+            onPress={() => navigation.navigate("Home")}
+          >
+            Go to Home
+          </Button>
+          <Button
+            mode="contained"
+            style={{ marginTop: 12 }}
+            onPress={() => navigation.navigate("AskAI")}
+          >
+            Ask AI
+          </Button>
+        </View>
+      )}
     </ScrollView>
   );
 };

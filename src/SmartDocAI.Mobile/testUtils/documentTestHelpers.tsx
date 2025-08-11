@@ -44,7 +44,7 @@ export async function performDocumentUploadAndExtract(mockRouteUpload: any) {
     );
 
     expect(api.post).toHaveBeenCalledWith(
-      expect.stringContaining("/upload"),
+      expect.stringContaining("documents/upload"),
       expect.any(FormData),
       expect.objectContaining({
         headers: { "Content-Type": "multipart/form-data" },
@@ -52,7 +52,7 @@ export async function performDocumentUploadAndExtract(mockRouteUpload: any) {
     );
 
     expect(api.get).toHaveBeenCalledWith(
-      expect.stringContaining("/123/extract-text")
+      expect.stringContaining("documents/123/extract-text")
     );
     expect(screen.getByText("Extracted text from document")).toBeTruthy();
     expect(screen.getByText("Uploaded Successfully.")).toBeTruthy();
