@@ -41,7 +41,12 @@ const Register = () => {
         message: "Registration successful",
         severity: "success",
       });
-      navigate("/");
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1500);
+
+      //navigate("/");
     } catch (err) {
       console.error(err);
       //alert("Registration failed");
