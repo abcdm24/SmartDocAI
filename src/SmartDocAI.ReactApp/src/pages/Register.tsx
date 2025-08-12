@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import {
   Container,
   Box,
@@ -15,7 +15,7 @@ import api from "../api/axios.ts";
 
 const Register = () => {
   const { setToken } = useAuth();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
