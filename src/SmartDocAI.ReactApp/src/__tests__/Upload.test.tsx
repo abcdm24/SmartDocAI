@@ -69,7 +69,7 @@ describe("Upload Component", () => {
     await waitFor(() => {
       console.log("api.post calls:", (api.post as any).mock.calls);
       expect(api.post).toHaveBeenCalledWith(
-        "/upload",
+        "documents/upload",
         expect.any(FormData),
         expect.objectContaining({
           headers: { "Content-Type": "multipart/form-data" },
@@ -81,7 +81,7 @@ describe("Upload Component", () => {
 
     await waitFor(() => {
       console.log("api.get calls:", (api.get as any).mock.calls);
-      expect(api.get).toHaveBeenCalledWith("/123/extract-text");
+      expect(api.get).toHaveBeenCalledWith("documents/123/extract-text");
       //expect(screen.getByText(/Extracted Text/i)).toBeInTheDocument();
       expect(screen.getByTestId("extracted-text-title")).toBeInTheDocument();
       expect(

@@ -45,5 +45,11 @@
   },
   "engines": {
     "node": ">=18 <=22"
+  },
+  "JwtSettings":{
+    "Secret":"E24E6199-0AE4-4755-B934-E9C21E84C4B0",
+    "Issuer":"SmartDocAI",
+    "Audience": "SmartDocAIUsers",
+    "ExpiryMinutes":60
   }
 }
