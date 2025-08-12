@@ -6,6 +6,7 @@ import App from "./App";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 // import { BrowserRouter as Router } from "react-router-dom";
 //import { HelmetProvider } from "react-helmet-async";
+import { AuthProvider } from "./auth/AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -18,10 +19,12 @@ const theme = createTheme({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     {/* <HelmetProvider> */}
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </AuthProvider>
     {/* </HelmetProvider> */}
     {/* <Router>
     <HelmetProvider>

@@ -94,7 +94,7 @@ const Upload = () => {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await api.post("/upload", formData, {
+      const response = await api.post("documents/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -105,7 +105,9 @@ const Upload = () => {
         severity: "success",
       });
 
-      const extractRes = await api.get(`/${response.data.id}/extract-text`);
+      const extractRes = await api.get(
+        `documents/${response.data.id}/extract-text`
+      );
       setExtractedText(extractRes.data.text);
     } catch (err) {
       setSnackbar({
@@ -142,8 +144,8 @@ const Upload = () => {
     setLoading(true);
     try {
       console.log("handleSuumarize function called with ");
-
-      const res = await api.get(`/${docId}/Summarize`);
+      console.log(`DocId:${docId}`);
+      const res = await api.get(`documents/${docId}/summarize`);
       setSummary(res.data.summary);
       setSnackbar({
         open: true,
@@ -169,9 +171,13 @@ const Upload = () => {
     if (!docId || !userPrompt.trim()) return;
     setLoading(true);
     try {
-      const res = await api.post(`/${docId}/Ask`, JSON.stringify(userPrompt), {
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await api.post(
+        `documents/${docId}/Ask`,
+        JSON.stringify(userPrompt),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       setAiResponse(res.data.response);
       setSnackbar({ open: true, message: "AI responded", severity: "success" });
     } catch (err) {
