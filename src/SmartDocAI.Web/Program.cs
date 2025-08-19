@@ -8,6 +8,25 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Bind JwtSettings first and validate presence of secret
+var jwtSection = builder.Configuration.GetSection("JwtSettings");
+var jwtSettings = jwtSection.Get<JwtSettings>();
+
+// Optionally: log presence (but never log the secret value).
+var loggerFactory = LoggerFactory.Create(lb => lb.AddConsole());
+var startupLogger = loggerFactory.CreateLogger("StartupCheck");
+startupLogger.LogInformation("JwtSettings present: {HasSection}", jwtSection.Exists());
+
+// Validate secret presence (fail fast with a clear message)
+if (string.IsNullOrWhiteSpace(jwtSettings?.Secret))
+{
+    // In development you may want a clearer instruction; in production we must fail.
+    var message = "JwtSettings:Secret is not configured. Set JwtSettings__Secret in environment/appsettings or user-secrets.";
+    startupLogger.LogCritical(message);
+    throw new InvalidOperationException(message);
+}
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 //builder.Services.AddOpenApi();
