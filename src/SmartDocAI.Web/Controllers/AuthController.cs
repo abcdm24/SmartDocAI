@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SmartDocAI.Application.DTOs;
@@ -41,6 +42,7 @@ namespace SmartDocAI.Web.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("ShowVal/{name}")]
         public IActionResult GetValue(string name)
         {
