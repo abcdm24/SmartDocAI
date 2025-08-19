@@ -86,12 +86,12 @@ if (app.Environment.IsDevelopment())
     //app.UseHttpsRedirection();
 }
 
-var disableHttps = builder.Configuration.GetValue<bool>("DisableHttps");
+//var disableHttps = builder.Configuration.GetValue<bool>("DisableHttps");
 
-if (!disableHttps)
-{
-    app.UseHttpsRedirection();
-}
+//if (!disableHttps)
+//{
+//    app.UseHttpsRedirection();
+//}
 
 app.UseCors("AllowReactApp");
 
