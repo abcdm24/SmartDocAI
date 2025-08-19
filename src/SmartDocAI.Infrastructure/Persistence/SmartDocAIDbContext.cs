@@ -22,7 +22,7 @@ namespace SmartDocAI.Infrastructure.Persistence
             base.OnModelCreating(modelBuilder);
             // Add any additional model configurations here
         }
-
+        
         public DbSet<Document> Documents  => Set<Document>();
         public DbSet<User> Users => Set<User>();
     }

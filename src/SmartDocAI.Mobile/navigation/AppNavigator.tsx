@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function AppNavigator() {
   //const { user, logout } = useContext(AuthContext);
   //const { docId } = useDocument();
-  const { token, loading } = useContext(AuthContext);
+  const { token, loading, user } = useContext(AuthContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   //const [loading, setLoading] = useState(true);
 
@@ -33,6 +33,9 @@ export default function AppNavigator() {
   //   checkAuth();
   // }, []);
   console.log(`isloggeedin:${isLoggedIn}`);
+  console.log(`token:${token}`);
+  if (user != null) console.log(`user.name:${user!.name}`);
+  else console.log(`No user`);
   if (loading)
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -42,7 +45,7 @@ export default function AppNavigator() {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!token ? (
+      {!token || !user ? (
         <>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />

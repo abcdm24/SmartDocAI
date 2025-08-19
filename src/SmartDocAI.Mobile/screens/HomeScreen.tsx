@@ -26,7 +26,6 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     const { width } = event.nativeEvent.layout;
     setContentWidth(width);
   };
-
   return (
     <View style={{ flex: 1, padding: 24, backgroundColor: "#f5f5f5" }}>
       {/* <View style={{ alignItems: "center", padding: 16 }}>  */}

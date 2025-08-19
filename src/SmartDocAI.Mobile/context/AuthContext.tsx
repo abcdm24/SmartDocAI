@@ -25,9 +25,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     async function loadStoredToken() {
       const storedToken = await getToken("authtoken");
+      const storedUserToekn = await getToken("usertoken");
       if (storedToken) {
         setToken(storedToken);
       }
+      if (storedUserToekn) {
+        setUser(JSON.parse(storedUserToekn));
+      }
+
       setLoading(false);
     }
     loadStoredToken();
@@ -40,6 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(data.user);
     setToken(data.token);
     await saveToken("authtoken", data.token);
+    await saveToken("usertoken", JSON.stringify(data.user));
   };
 
   const register = async (name: string, email: string, password: string) => {
@@ -53,6 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     setToken(null);
     await deleteToken("authtoken");
+    await deleteToken("usertoken");
   };
 
   return (

@@ -90,7 +90,14 @@ const Login = () => {
       //navigate("/");
     } catch (err) {
       console.error(err);
-      alert("Login failed");
+      //alert("Login failed");
+      setSnackbarMessage("Login failed");
+      setSnackbarSeverity("error");
+      setOpenSnackbar(true);
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1500);
     } finally {
       setLoading(false);
     }
