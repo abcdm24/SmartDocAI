@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    console.log("VITE_API_BASE_URL =", import.meta.env.VITE_API_BASE_URL);
+    
     baseURL: import.meta.env.VITE_API_BASE_URL, 
     //baseURL: 'http://192.168.58.136:5000/api/documents',
     //baseURL: 'http://192.168.58.136:5000/api',
@@ -10,6 +10,8 @@ const api = axios.create({
     //     'content-type':'application/json'
     // }
 });
+
+console.log("VITE_API_BASE_URL =", import.meta.env.VITE_API_BASE_URL);
 
 api.interceptors.request.use((config)=>{
     const token = localStorage.getItem("jwtToken");

@@ -33,7 +33,6 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      console.log("VITE_API_BASE_URL =", import.meta.env.VITE_API_BASE_URL);
       const res = await api.post("auth/register", form);
       //localStorage.setItem("jwtToken", res.data.token);
       setToken(res.data.token);
