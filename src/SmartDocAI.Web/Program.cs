@@ -72,8 +72,6 @@ builder.Configuration.AddEnvironmentVariables();
 
 var app = builder.Build();
 
-app.UseCors("AllowReactApp");
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -94,6 +92,9 @@ if (!disableHttps)
 {
     app.UseHttpsRedirection();
 }
+
+app.UseCors("AllowReactApp");
+
 
 app.UseAuthentication();
 app.UseAuthorization();
