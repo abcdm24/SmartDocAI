@@ -21,7 +21,9 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
-        builder => builder.WithOrigins("http://localhost:3000")
+        builder => builder.WithOrigins(
+            "https://ambitious-stone-05cbaea0f.2.azurestaticapps.net",
+            "http://localhost:3000")
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
