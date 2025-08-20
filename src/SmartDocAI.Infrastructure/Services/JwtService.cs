@@ -39,7 +39,7 @@ namespace SmartDocAI.Infrastructure.Services
             new Claim(JwtRegisteredClaimNames.Email, user.Email)
             };
 
-            JwtSecurityToken token = new JwtSecurityToken(string.Empty);
+            //JwtSecurityToken token = new JwtSecurityToken(string.Empty);
             try
             {
                 _logger.LogInformation($"Secret key: {_secret}");
@@ -48,20 +48,21 @@ namespace SmartDocAI.Infrastructure.Services
                 //var key = new SymmetricSecurityKey(keyBytes);
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                token = new JwtSecurityToken(
+                var token = new JwtSecurityToken(
                     issuer: _issuer,
                     audience: _audience,
                     claims: claims,
                     expires: DateTime.UtcNow.AddHours(1),
                     signingCredentials: creds
                     );
+
+                return new JwtSecurityTokenHandler().WriteToken(token);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error: {ex.Message}");
                 throw new Exception($"Error in token generation: {ex.Message}, key:{_secret}",ex.InnerException);
             }
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }
