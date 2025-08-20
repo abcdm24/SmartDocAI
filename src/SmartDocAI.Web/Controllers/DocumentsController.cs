@@ -68,7 +68,8 @@ namespace SmartDocAI.Web.Controllers
                 _logger.LogWarning("No file provided to upload");
                 return BadRequest("No file uploaded.");
             }
-            string folderPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Files");
+            //string folderPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Files");
+            string folderPath = Path.Combine(Path.GetDirectoryName(System.AppContext.BaseDirectory)!, "Files");
             //using var stream = new MemoryStream();
             //await file.CopyToAsync(stream);
             //var fileBytes = stream.ToArray();

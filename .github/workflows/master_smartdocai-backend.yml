@@ -23,17 +23,32 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Restore dependencies
+        run: dotnet restore SmartDocAI.sln    
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: Build with dotnet
+        run: dotnet build SmartDocAI.Web/SmartDocAI.Web.csproj --configuration Release
+
+      - name: Publish self-contained
+        run: dotnet publish SmartDocAI.Web/SmartDocAI.Web.csproj -c Release -r linux-x64 --self-contained true -o ./publish
+
+      - name: Verify required DLLs
+        run: |
+          REQUIRED_DLLS=("Microsoft.IdentityModel.Tokens.dll" "Microsoft.IdentityModel.Logging.dll" "System.IdentityModel.Tokens.Jwt.dll")
+          for dll in "${REQUIRED_DLLS[@]}"; do
+            if ! find ./publish -name "$dll" | grep -q .; then
+              echo "❌ Missing required DLL: $dll"
+              exit 1
+            else
+              echo "✅ Found: $dll"
+            fi
+          done    
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ./publish
 
   deploy:
     runs-on: ubuntu-latest
