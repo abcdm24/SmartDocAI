@@ -73,14 +73,23 @@ namespace SmartDocAI.Web.Controllers
             var user = await _authService.AuthenticateAsync(request.Email, request.Password);
             if (user == null) return BadRequest("Invalid credentials");
 
-            var token = _jwtService.GenerateToken(user);
-            var responseDto = new AuthResponseDto
+            try
             {
-                Token = token,
-                User = new UserDto { Email = user.Email, Name = user.Name }
-            };
-            
-            return await  Task.FromResult(Ok(responseDto));
+                var token = _jwtService.GenerateToken(user);
+                var responseDto = new AuthResponseDto
+                {
+                    Token = token,
+                    User = new UserDto { Email = user.Email, Name = user.Name }
+                };
+
+
+                return await Task.FromResult(Ok(responseDto));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error in token generation: {ex.InnerException}");
+                return BadRequest(ex.Message);
+            }
         }
 
 

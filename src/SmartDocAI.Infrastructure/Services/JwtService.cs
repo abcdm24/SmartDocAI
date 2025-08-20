@@ -36,19 +36,27 @@ namespace SmartDocAI.Infrastructure.Services
             new Claim(JwtRegisteredClaimNames.Email, user.Email)
             };
 
-            //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-            var keyBytes = Convert.FromBase64String(_secret);
-            var key = new SymmetricSecurityKey(keyBytes);
-            var creds = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
+            JwtSecurityToken token = new JwtSecurityToken(string.Empty);
+            try
+            {
+                //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
+                var keyBytes = Convert.FromBase64String(_secret);
 
-            var token = new JwtSecurityToken(
-                issuer: _issuer,
-                audience: _audience,
-                claims: claims,
-                expires:DateTime.UtcNow.AddHours(1),
-                signingCredentials: creds
-                );
+                var key = new SymmetricSecurityKey(keyBytes);
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+                token = new JwtSecurityToken(
+                    issuer: _issuer,
+                    audience: _audience,
+                    claims: claims,
+                    expires: DateTime.UtcNow.AddHours(1),
+                    signingCredentials: creds
+                    );
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in token generation: {ex.Message}",ex.InnerException);
+            }
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
