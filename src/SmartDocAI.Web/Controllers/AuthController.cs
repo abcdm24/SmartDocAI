@@ -76,6 +76,8 @@ namespace SmartDocAI.Web.Controllers
 
             try
             {
+                _logger.LogInformation($"User found in DB: {user.Name}");
+
                 var token = _jwtService.GenerateToken(user);
                 var responseDto = new AuthResponseDto
                 {
