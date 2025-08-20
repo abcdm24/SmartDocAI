@@ -67,6 +67,7 @@ namespace SmartDocAI.Web.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(AuthRequestDto request)
         {
@@ -87,6 +88,7 @@ namespace SmartDocAI.Web.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error in token generation: {ex.Message}");
                 _logger.LogError($"Error in token generation: {ex.InnerException}");
                 return BadRequest(ex.Message);
             }

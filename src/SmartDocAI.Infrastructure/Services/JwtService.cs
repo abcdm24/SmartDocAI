@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Office2019.Presentation;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SmartDocAI.Application.Interfaces;
 using SmartDocAI.Domain.Entities;
@@ -21,12 +22,14 @@ namespace SmartDocAI.Infrastructure.Services
         private readonly string _secret;
         private readonly string _issuer;
         private readonly string _audience;
+        private ILogger<JwtService> _logger;
 
-        public JwtService(IConfiguration config)
+        public JwtService(IConfiguration config, ILogger<JwtService> logger)
         {
             _secret = config!["JwtSettings:Secret"]!;
             _issuer = config!["JwtSettings:Issuer"]!;
             _audience = config!["JwtSettings:Audience"]!;
+            _logger = logger;
         }
 
         public string GenerateToken(User user) {
@@ -39,6 +42,7 @@ namespace SmartDocAI.Infrastructure.Services
             JwtSecurityToken token = new JwtSecurityToken(string.Empty);
             try
             {
+                _logger.LogInformation($"Secret key: {_secret}");
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
                 //var keyBytes = Convert.FromBase64String(_secret);
                 //var key = new SymmetricSecurityKey(keyBytes);
@@ -54,6 +58,7 @@ namespace SmartDocAI.Infrastructure.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error: {ex.Message}");
                 throw new Exception($"Error in token generation: {ex.Message}, key:{_secret}",ex.InnerException);
             }
             return new JwtSecurityTokenHandler().WriteToken(token);
