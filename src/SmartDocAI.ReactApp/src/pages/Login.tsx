@@ -83,9 +83,9 @@ const Login = () => {
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
 
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1500);
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 1500);
 
       //navigate("/");
     } catch (err) {
