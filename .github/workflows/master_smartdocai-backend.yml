@@ -38,6 +38,13 @@ jobs:
           /p:PublishTrimmed=false \
           -o ./publish
 
+      - name: List publish folder (debug)
+        run: |
+          echo "---- publish tree ----"
+          ls -laR ./publish | sed -n '1,200p'
+          echo "---- dll files (top 200) ----"
+          find ./publish -type f -name "*.dll" | sed -n '1,200p'    
+
       - name: Verify required DLLs
         run: |
           REQUIRED_DLLS=("Microsoft.IdentityModel.Tokens.dll" "Microsoft.IdentityModel.Logging.dll" "System.IdentityModel.Tokens.Jwt.dll")
