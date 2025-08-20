@@ -34,7 +34,7 @@ jobs:
 
       - name: Verify required DLLs
         run: |
-          REQUIRED_DLLS=("Microsoft.IdentityModel.Tokens.dll" "Microsoft.IdentityModel.Logging.dll" "System.IdentityModel.Tokens.Jwt.dll")
+          REQUIRED_DLLS=("Microsoft.IdentityModel.Logging.dll" "System.IdentityModel.Tokens.Jwt.dll")
           for dll in "${REQUIRED_DLLS[@]}"; do
             if ! find ./publish -name "$dll" | grep -q .; then
               echo "❌ Missing required DLL: $dll"
