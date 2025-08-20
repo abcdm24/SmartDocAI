@@ -35,7 +35,10 @@ namespace SmartDocAI.Infrastructure.Services
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email)
             };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
+
+            //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
+            var keyBytes = Convert.FromBase64String(_secret);
+            var key = new SymmetricSecurityKey(keyBytes);
             var creds = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
