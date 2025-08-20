@@ -30,7 +30,7 @@ jobs:
         run: dotnet build ./src/SmartDocAI.Web/SmartDocAI.Web.csproj --configuration Release
 
       - name: Publish self-contained
-        run: dotnet publish ./src/SmartDocAI.Web/SmartDocAI.Web.csproj -c Release -r linux-x64 --self-contained true -o ./publish
+        run: dotnet publish ./src/SmartDocAI.Web/SmartDocAI.Web.csproj -c Release -r linux-x64 --self-contained true /p:PublishTrimmed=false -o ./publish
 
       - name: Verify required DLLs
         run: |
