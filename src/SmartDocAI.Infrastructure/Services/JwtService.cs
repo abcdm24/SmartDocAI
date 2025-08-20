@@ -39,10 +39,9 @@ namespace SmartDocAI.Infrastructure.Services
             JwtSecurityToken token = new JwtSecurityToken(string.Empty);
             try
             {
-                //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-                var keyBytes = Convert.FromBase64String(_secret);
-
-                var key = new SymmetricSecurityKey(keyBytes);
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
+                //var keyBytes = Convert.FromBase64String(_secret);
+                //var key = new SymmetricSecurityKey(keyBytes);
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                 token = new JwtSecurityToken(
@@ -55,7 +54,7 @@ namespace SmartDocAI.Infrastructure.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error in token generation: {ex.Message}",ex.InnerException);
+                throw new Exception($"Error in token generation: {ex.Message}, key:{_secret}",ex.InnerException);
             }
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
