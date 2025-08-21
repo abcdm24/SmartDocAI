@@ -32,7 +32,7 @@ export default function LayoutScreen({ children }: LayoutPageProps) {
         try {
           const decoded: DecodedToken = jwtDecode(token);
           setUsername(decoded?.name || "");
-          console.log(`user name:${username}`);
+          //console.log(`user name:${username}`);
         } catch (error) {
           console.log("Error decoding token", error);
         }

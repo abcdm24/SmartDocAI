@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string) => {
     console.log("Calling API login in AuthAPI");
     const data = await apiLogin(email, password);
-    console.log(`token:${data.token}`);
+    //console.log(`token:${data.token}`);
     setUser(data.user);
     setToken(data.token);
     await saveToken("authtoken", data.token);
@@ -50,9 +50,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = async (name: string, email: string, password: string) => {
     const data = await apiRegister(name, email, password);
-    setUser(data.user);
-    setToken(data.token);
-    await saveToken("authtoken", data.token);
+    //setUser(data.user);
+    //setToken(data.token);
+    //await saveToken("authtoken", data.token);
   };
 
   const logout = async () => {
